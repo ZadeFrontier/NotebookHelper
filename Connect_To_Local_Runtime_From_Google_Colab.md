@@ -93,4 +93,25 @@ Access the local file system
 Run malicious content on your machine
 Before attempting to connect to a local runtime, make sure you trust the authors of the notebook and ensure you understand what code is being executed. For more information on the Jupyter notebook server's security model, consult http://jupyter-notebook.readthedocs.io/en/stable/security.html.
 
+## Browser-specific settings
+Note: If you're using Mozilla Firefox, you'll need to set thenetwork.websocket.allowInsecureFromHTTPS preference within the Firefox config editor. Colaboratory makes a connection to your local kernel using a WebSocket. By default, Firefox disallows connections from HTTPS domains using standard WebSockets.
+
+## Sharing
+If you share your notebook with others, the runtime on your local machine will not be shared. When others open the shared notebook, they will be connected to a standard Cloud runtime by default.
+
+By default, all code cell outputs are stored in Google Drive. If your local connection will access sensitive data and you would like to omit code cell outputs, select Edit > Notebook settings > Omit code cell output when saving this notebook.
+
+## Connecting to a runtime on a Google Compute Engine instance
+If the Jupyter notebook server you'd like to connect to is running on another machine (e.g. Google Compute Engine instance), you can set up SSH local port forwarding to allow Colaboratory to connect to it.
+
+Note: Google Cloud Platform provides Deep Learning VM images with Colaboratory local backend support preconfigured. Follow the how-to guides to set up your Google Compute Engine instance with local SSH port forwarding. If you use these images, skip directly to Step 4: Connect to the local runtime (using port 8888).
+
+First, set up your Jupyter notebook server using the instructions above.
+
+Second, establish an SSH connection from your local machine to the remote instance (e.g. Google Compute Engine instance) and specify the '-L' flag. For example, to forward port 8888 on your local machine to port 8888 on your Google Compute Engine instance, run the following:
+```shell
+gcloud compute ssh --zone YOUR_ZONE YOUR_INSTANCE_NAME -- -L 8888:localhost:8888
+```
+    
+Finally, make the connection within Colaboratory by connecting to the forwarded port (follow the same instructions under Step 4: Connect to the local runtime).
 
