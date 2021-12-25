@@ -1,4 +1,4 @@
-# Connect to Local Runtime from Colab on Jupyter HTTP-over-WebSocket
+# Jupyter HTTP-over-WebSocket
 
 This Jupyter server extension allows running Jupyter notebooks that use a
 WebSocket to proxy HTTP traffic. Browsers do not allow cross-domain
